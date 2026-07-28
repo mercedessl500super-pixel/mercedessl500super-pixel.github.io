@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MidnightClubMods.xyz | Hub</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        body { display: flex; background-color: #F4F5F7; color: #24292E; min-height: 100vh; }
+        
+        /* Sidebar Styling */
+        .sidebar { width: 260px; background-color: #FFFFFF; border-right: 1px solid #E1E4E8; padding: 30px 20px; display: flex; flex-direction: column; }
+        .logo { font-size: 20px; font-weight: bold; margin-bottom: 40px; color: #1F2328; display: flex; align-items: center; gap: 10px; }
+        .nav-link { text-decoration: none; color: #57606A; font-weight: 600; padding: 12px 15px; border-radius: 6px; margin-bottom: 8px; display: block; transition: all 0.2s; }
+        .nav-link:hover, .nav-link.active { background-color: #F3F4F6; color: #24292E; }
+        
+        /* Main Workspace Layout */
+        .main-content { flex: 1; padding: 40px; }
+        .header-section { margin-bottom: 30px; }
+        .header-section h1 { font-size: 28px; font-weight: 800; color: #1F2328; margin-bottom: 8px; }
+        .header-section p { color: #57606A; font-size: 15px; }
+        
+        /* Cards Dynamic Grid Grid Layout */
+        .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .mod-card { background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+        .mod-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px rgba(0,0,0,0.05); }
+        
+        .mod-info h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #24292E; }
+        .mod-info p { font-size: 14px; color: #57606A; line-height: 1.5; margin-bottom: 15px; }
+        
+        /* Dynamic Badges */
+        .badge-container { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
+        .badge.script { background-color: #DDF4FF; color: #0969DA; }
+        .badge.asset { background-color: #E6FFEC; color: #1A7F37; }
+        
+        .author-tag { font-size: 12px; color: #8C95A0; margin-bottom: 15px; }
+        
+        /* Primary CTA Buttons */
+        .download-btn { display: inline-block; text-align: center; background-color: #2EA44F; color: #FFFFFF; font-weight: 700; font-size: 14px; text-decoration: none; padding: 10px 20px; border-radius: 6px; transition: background 0.2s; }
+        .download-btn:hover { background-color: #2C974B; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Panel -->
+    <div class="sidebar">
+        <div class="logo">🚗 MC3Mods.xyz</div>
+        <a href="#" class="nav-link active">All Modifications</a>
+        <a href="https://github.com/" target="_blank" class="nav-link">Submit a Mod (GitHub)</a>
+    </div>
+
+    <!-- Main Workspace Dashboard Content Area -->
+    <div class="main-content">
+        <div class="header-section">
+            <h1>Midnight Club 3 Mod Repository</h1>
+            <p>Community asset packs, conversion tools, and automated deployment scripts hosted safely without restrictions.</p>
+        </div>
+
+        <!-- The Content Target Area Container -->
+        <div class="mod-grid" id="modGrid"></div>
+    </div>
+
+    <script>
+        // Simply edit this list array directly to update your entire website live!
+        const modificationsData = [
+          {
+            title: "MC3 Dual-Layer ISO Asset Installer",
+            author: "Max",
+            category: "script",
+            description: "Custom Python utility to update TOC listings and perfectly patch assets.dat and STREAMS.dat configurations without corrupting game audio blocks.",
+            downloadUrl: "https://github.com/yourusername/your-repo/raw/main/tools/installer.zip"
+          },
+          {
+            title: "PNACH to CodeBreaker Live Converter",
+            author: "ModdingCommunity",
+            category: "script",
+            description: "Automated desktop app translation client to parse PCSX2 format engine arrays into RAW cheat sequences instantly.",
+            downloadUrl: "https://github.com/yourusername/your-repo/raw/main/tools/converter.zip"
+          }
+        ];
+
+        function renderGrid() {
+            const container = document.getElementById('modGrid');
+            container.innerHTML = modificationsData.map(mod => `
+                <div class="mod-card">
+                    <div class="mod-info">
+                        <div class="badge-container">
+                            <span class="badge ${mod.category}">${mod.category === 'script' ? 'Python Script' : 'Asset Pack'}</span>
+                        </div>
+                        <h3>${mod.title}</h3>
+                        <div class="author-tag">By ${mod.author}</div>
+                        <p>${mod.description}</p>
+                    </div>
+                    <a href="${mod.downloadUrl}" class="download-btn">Download from GitHub</a>
+                </div>
+            `).join('');
+        }
+
+        // Initialize display execution
+        renderGrid();
+    </script>
+</body>
+</html>
